@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup 2026 Sweepstake Generator</title>
+<meta property="og:title" content="World Cup 2026 Sweepstake">
+<meta property="og:description" content="I got [team] in the World Cup 2026 Sweepstake! 🏆">
+<meta property="og:url" content="https://theworldcup26.co.uk/sweepstake">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7603772944614279" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #c9a227;
+  --gold-light: #e8c84a;
+  --navy: #060d1f;
+  --navy2: #0d1730;
+  --navy3: #141f38;
+  --white: #ffffff;
+  --muted: rgba(255,255,255,0.55);
+  --dimmed: rgba(255,255,255,0.25);
+  --border: rgba(255,255,255,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(6,13,31,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,162,39,0.2);
+  padding: 0 24px; height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { font-family: 'Bebas Neue', cursive; font-size: 22px; letter-spacing: 2px; }
+.nav-brand span { color: var(--gold); }
+.nav-back {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; color: var(--muted); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.15s;
+}
+.nav-back:hover { color: var(--white); }
+
+/* HERO */
+.hero {
+  padding: 90px 24px 48px;
+  text-align: center;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,162,39,0.15) 0%, transparent 60%), var(--navy);
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(201,162,39,0.15); border: 1px solid rgba(201,162,39,0.3);
+  border-radius: 20px; padding: 5px 16px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', cursive; font-size: clamp(48px, 10vw, 80px);
+  letter-spacing: 3px; line-height: 1; margin-bottom: 12px;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 18px;
+  color: var(--muted); letter-spacing: 1px; max-width: 500px; margin: 0 auto 32px;
+}
+
+/* SETUP CARD */
+.setup-container { max-width: 680px; margin: 0 auto; padding: 0 24px 60px; }
+
+.card {
+  background: var(--navy2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px; margin-bottom: 16px;
+}
+
+.card-title {
+  font-family: 'Bebas Neue', cursive; font-size: 20px; letter-spacing: 2px;
+  color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.card-title .step-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(201,162,39,0.2); border: 1px solid rgba(201,162,39,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--gold-light);
+}
+
+/* INPUTS */
+.input-row { display: flex; gap: 10px; margin-bottom: 10px; }
+
+.input-field {
+  flex: 1; padding: 11px 14px;
+  background: var(--navy3); border: 1px solid var(--border);
+  border-radius: 7px; color: var(--white);
+  font-family: 'Barlow', sans-serif; font-size: 14px;
+  transition: border-color 0.15s;
+  outline: none;
+}
+.input-field:focus { border-color: rgba(201,162,39,0.5); }
+.input-field::placeholder { color: var(--dimmed); }
+
+.btn {
+  padding: 11px 20px; border-radius: 7px; cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 14px;
+  font-weight: 700; letter-spacing: 0.5px; border: none;
+  transition: all 0.15s; white-space: nowrap;
+}
+.btn-gold { background: var(--gold); color: #000; }
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+.btn-outline:hover { border-color: rgba(255,255,255,0.2); color: var(--white); }
+.btn-red { background: rgba(204,0,1,0.2); border: 1px solid rgba(204,0,1,0.3); color: #ff9090; }
+.btn-red:hover { background: rgba(204,0,1,0.3); }
+.btn-big {
+  width: 100%; padding: 16px; font-size: 18px; letter-spacing: 2px;
+  border-radius: 8px; margin-top: 8px;
+}
+
+/* NAMES LIST */
+.names-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; min-height: 40px; }
+.name-tag {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+  border-radius: 20px; padding: 5px 12px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600;
+}
+.name-tag .remove {
+  cursor: pointer; color: var(--dimmed); font-size: 16px; line-height: 1;
+  transition: color 0.15s;
+}
+.name-tag .remove:hover { color: #ff9090; }
+
+.names-count {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+  color: var(--dimmed); margin-top: 10px; letter-spacing: 0.5px;
+}
+.names-count span { color: var(--gold); font-weight: 700; }
+
+/* SETTINGS ROW */
+.settings-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;
+}
+
+.setting-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 12px;
+  font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px;
+}
+
+select.input-field {
+  appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+  padding-right: 32px;
+}
+
+/* PRIZE INFO */
+.prize-display {
+  background: rgba(201,162,39,0.08); border: 1px solid rgba(201,162,39,0.2);
+  border-radius: 8px; padding: 14px 16px; margin-top: 12px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+}
+.prize-item { text-align: center; }
+.prize-item .val {
+  font-family: 'Bebas Neue', cursive; font-size: 28px; color: var(--gold); letter-spacing: 1px;
+}
+.prize-item .lbl {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+}
+
+/* RESULTS */
+#results-section { display: none; }
+
+.results-header {
+  text-align: center; padding: 40px 24px 24px; max-width: 900px; margin: 0 auto;
+}
+.results-header h2 {
+  font-family: 'Bebas Neue', cursive; font-size: 48px; letter-spacing: 3px; margin-bottom: 8px;
+}
+.results-header p { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; color: var(--muted); }
+
+.results-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px; max-width: 900px; margin: 0 auto; padding: 0 24px 40px;
+}
+
+/* DRAW CARD */
+.draw-card {
+  background: var(--navy2); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.draw-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+.draw-card-header {
+  padding: 16px 18px 12px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.draw-card-flag { font-size: 48px; line-height: 1; }
+.draw-card-num {
+  font-family: 'Bebas Neue', cursive; font-size: 32px;
+  color: rgba(255,255,255,0.1); letter-spacing: 1px;
+}
+
+.draw-card-body { padding: 0 18px 16px; }
+.draw-card-team {
+  font-family: 'Bebas Neue', cursive; font-size: 24px;
+  letter-spacing: 1.5px; color: var(--white); margin-bottom: 2px;
+}
+.draw-card-group {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 12px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--dimmed); margin-bottom: 12px;
+}
+
+.draw-card-footer {
+  padding: 12px 18px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.draw-card-name {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700;
+  color: var(--white);
+}
+.draw-card-share {
+  background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.3);
+  color: #25d366; border-radius: 6px; padding: 5px 10px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.5px; cursor: pointer; transition: all 0.15s;
+  display: flex; align-items: center; gap: 4px;
+}
+.draw-card-share:hover { background: rgba(37,211,102,0.25); }
+
+/* GROUP BADGE COLORS */
+.grp-a { border-top: 3px solid #4c90e2; }
+.grp-b { border-top: 3px solid #34d399; }
+.grp-c { border-top: 3px solid #a78bfa; }
+.grp-d { border-top: 3px solid #fbbf24; }
+.grp-e { border-top: 3px solid #fb7239; }
+.grp-f { border-top: 3px solid #f87171; }
+.grp-g { border-top: 3px solid #2dd4bf; }
+.grp-h { border-top: 3px solid #c084fc; }
+.grp-i { border-top: 3px solid #f472b6; }
+.grp-j { border-top: 3px solid #34d399; }
+.grp-k { border-top: 3px solid #fbbf24; }
+.grp-l { border-top: 3px solid #60a5fa; }
+
+/* RESULTS ACTIONS */
+.results-actions {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  padding: 0 24px 20px; max-width: 900px; margin: 0 auto;
+}
+
+/* PRIZE SUMMARY BAR */
+.prize-bar {
+  background: rgba(201,162,39,0.1); border-top: 1px solid rgba(201,162,39,0.2);
+  border-bottom: 1px solid rgba(201,162,39,0.2);
+  padding: 16px 24px; text-align: center;
+  display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+  max-width: 900px; margin: 0 auto 24px;
+}
+.prize-bar-item .v {
+  font-family: 'Bebas Neue', cursive; font-size: 32px; color: var(--gold); letter-spacing: 1px;
+}
+.prize-bar-item .l {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+}
+
+/* PRINT STYLES */
+@media print {
+  nav, .hero, .setup-container, .results-actions, .prize-bar, .draw-card-share { display: none !important; }
+  body { background: white !important; color: black !important; }
+  .results-header h2 { color: #1a1a1a; }
+  .results-header p { color: #666; }
+  .draw-card { border: 2px solid #ddd !important; background: white !important; break-inside: avoid; }
+  .draw-card-team { color: #1a1a1a !important; }
+  .draw-card-name { color: #1a1a1a !important; }
+  .draw-card-group { color: #666 !important; }
+  #results-section { display: block !important; }
+  .results-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ANIMATION */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.draw-card { animation: cardIn 0.3s ease forwards; opacity: 0; }
+
+@keyframes drumroll {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.drumrolling { animation: drumroll 0.15s ease infinite; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .settings-row { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+@media (max-width: 400px) {
+  .results-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">World Cup <span>2026</span></div>
+  <a href="index.html" class="nav-back">← Back to site</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🏆 Official Sweepstake Generator</div>
+  <h1>World Cup <span>2026</span><br>Sweepstake</h1>
+  <p>Enter your names, draw your teams, share the results. Free &amp; instant.</p>
+</div>
+
+<!-- SETUP -->
+<div class="setup-container" id="setup-section">
+
+  <!-- STEP 1: Names -->
+  <div class="card">
+    <div class="card-title">
+      <div class="step-num">1</div>
+      Add Your Players
+    </div>
+    <div class="input-row">
+      <input type="text" class="input-field" id="name-input" placeholder="Enter a name and press Add…" maxlength="30">
+      <button class="btn btn-gold" onclick="addName()">Add</button>
+    </div>
+    <div class="names-list" id="names-list"></div>
+    <div class="names-count" id="names-count">No players added yet</div>
+  </div>
+
+  <!-- STEP 2: Settings -->
+  <div class="card">
+    <div class="card-title">
+      <div class="step-num">2</div>
+      Sweepstake Settings
+    </div>
+    <div class="settings-row">
+      <div>
+        <div class="setting-label">Entry Fee</div>
+        <select class="input-field" id="entry-fee" onchange="updatePrize()">
+          <option value="0">Free / No entry fee</option>
+          <option value="2">£2 per person</option>
+          <option value="5" selected>£5 per person</option>
+          <option value="10">£10 per person</option>
+          <option value="20">£20 per person</option>
+        </select>
+      </div>
+      <div>
+        <div class="setting-label">Prize Split</div>
+        <select class="input-field" id="prize-split">
+          <option value="winner">Winner takes all</option>
+          <option value="top2">Top 2 (70% / 30%)</option>
+          <option value="top3" selected>Top 3 (60% / 25% / 15%)</option>
+        </select>
+      </div>
+    </div>
+    <div id="prize-display" class="prize-display" style="display:none">
+      <div class="prize-item"><div class="val" id="pot-total">£0</div><div class="lbl">Total Pot</div></div>
+      <div class="prize-item"><div class="val" id="pot-1st">£0</div><div class="lbl">🥇 1st Place</div></div>
+      <div class="prize-item"><div class="val" id="pot-2nd">—</div><div class="lbl">🥈 2nd Place</div></div>
+      <div class="prize-item"><div class="val" id="pot-3rd">—</div><div class="lbl">🥉 3rd Place</div></div>
+    </div>
+  </div>
+
+  <!-- STEP 3: Draw -->
+  <div class="card">
+    <div class="card-title">
+      <div class="step-num">3</div>
+      Do The Draw!
+    </div>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
+      Teams are randomly assigned from all 48 World Cup nations. If you have more players than teams, some players get multiple teams. If fewer, some teams go unassigned.
+    </p>
+    <button class="btn btn-gold btn-big" id="draw-btn" onclick="doDraw()">
+      🎲 Do The Draw!
+    </button>
+  </div>
+
+</div>
+
+<!-- RESULTS -->
+<div id="results-section">
+  <div class="results-header">
+    <h2>🎉 The Draw Is Done!</h2>
+    <p id="results-subtitle">Here are your World Cup 2026 teams</p>
+  </div>
+
+  <div class="prize-bar" id="prize-bar" style="display:none">
+    <div class="prize-bar-item"><div class="v" id="rb-players">0</div><div class="l">Players</div></div>
+    <div class="prize-bar-item"><div class="v" id="rb-pot">£0</div><div class="l">Prize Pot</div></div>
+    <div class="prize-bar-item"><div class="v" id="rb-1st">£0</div><div class="l">🥇 Winner Gets</div></div>
+  </div>
+
+  <div class="results-actions">
+    <button class="btn btn-gold" onclick="window.print()">🖨️ Print Draw Cards</button>
+    <button class="btn btn-outline" onclick="shareAll()">📤 Share to WhatsApp</button>
+    <button class="btn btn-outline" onclick="redraw()">🔄 Redraw</button>
+    <button class="btn btn-red" onclick="resetAll()">✕ Start Over</button>
+  </div>
+
+  <div class="results-grid" id="results-grid"></div>
+</div>
+
+<script>
+// ============================================================
+// ALL 48 TEAMS
+// ============================================================
+const TEAMS = [
+  // Group A
+  { name:'Mexico', flag:'🇲🇽', group:'A' },
+  { name:'South Korea', flag:'🇰🇷', group:'A' },
+  { name:'South Africa', flag:'🇿🇦', group:'A' },
+  { name:'Denmark', flag:'🇩🇰', group:'A' },
+  // Group B
+  { name:'Canada', flag:'🇨🇦', group:'B' },
+  { name:'Switzerland', flag:'🇨🇭', group:'B' },
+  { name:'Qatar', flag:'🇶🇦', group:'B' },
+  { name:'Italy', flag:'🇮🇹', group:'B' },
+  // Group C
+  { name:'Brazil', flag:'🇧🇷', group:'C' },
+  { name:'Morocco', flag:'🇲🇦', group:'C' },
+  { name:'Scotland', flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', group:'C' },
+  { name:'Haiti', flag:'🇭🇹', group:'C' },
+  // Group D
+  { name:'USA', flag:'🇺🇸', group:'D' },
+  { name:'Australia', flag:'🇦🇺', group:'D' },
+  { name:'Paraguay', flag:'🇵🇾', group:'D' },
+  { name:'Türkiye', flag:'🇹🇷', group:'D' },
+  // Group E
+  { name:'Germany', flag:'🇩🇪', group:'E' },
+  { name:'Ecuador', flag:'🇪🇨', group:'E' },
+  { name:'Ivory Coast', flag:'🇨🇮', group:'E' },
+  { name:'Curaçao', flag:'🇨🇼', group:'E' },
+  // Group F
+  { name:'Netherlands', flag:'🇳🇱', group:'F' },
+  { name:'Japan', flag:'🇯🇵', group:'F' },
+  { name:'Tunisia', flag:'🇹🇳', group:'F' },
+  { name:'Ukraine', flag:'🇺🇦', group:'F' },
+  // Group G
+  { name:'Belgium', flag:'🇧🇪', group:'G' },
+  { name:'Iran', flag:'🇮🇷', group:'G' },
+  { name:'Egypt', flag:'🇪🇬', group:'G' },
+  { name:'New Zealand', flag:'🇳🇿', group:'G' },
+  // Group H
+  { name:'Spain', flag:'🇪🇸', group:'H' },
+  { name:'Uruguay', flag:'🇺🇾', group:'H' },
+  { name:'Saudi Arabia', flag:'🇸🇦', group:'H' },
+  { name:'Cape Verde', flag:'🇨🇻', group:'H' },
+  // Group I
+  { name:'France', flag:'🇫🇷', group:'I' },
+  { name:'Senegal', flag:'🇸🇳', group:'I' },
+  { name:'Norway', flag:'🇳🇴', group:'I' },
+  { name:'Iraq', flag:'🇮🇶', group:'I' },
+  // Group J
+  { name:'Argentina', flag:'🇦🇷', group:'J' },
+  { name:'Austria', flag:'🇦🇹', group:'J' },
+  { name:'Algeria', flag:'🇩🇿', group:'J' },
+  { name:'Jordan', flag:'🇯🇴', group:'J' },
+  // Group K
+  { name:'Portugal', flag:'🇵🇹', group:'K' },
+  { name:'Colombia', flag:'🇨🇴', group:'K' },
+  { name:'Uzbekistan', flag:'🇺🇿', group:'K' },
+  { name:'DR Congo', flag:'🇨🇩', group:'K' },
+  // Group L
+  { name:'England', flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', group:'L' },
+  { name:'Croatia', flag:'🇭🇷', group:'L' },
+  { name:'Panama', flag:'🇵🇦', group:'L' },
+  { name:'Ghana', flag:'🇬🇭', group:'L' },
+];
+
+let players = [];
+
+// ============================================================
+// ADD / REMOVE NAMES
+// ============================================================
+document.getElementById('name-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') addName();
+});
+
+function addName() {
+  const input = document.getElementById('name-input');
+  const name = input.value.trim();
+  if (!name) return;
+  if (players.includes(name)) { input.value = ''; return; }
+  players.push(name);
+  input.value = '';
+  renderNames();
+  updatePrize();
+}
+
+function removeName(name) {
+  players = players.filter(p => p !== name);
+  renderNames();
+  updatePrize();
+}
+
+function renderNames() {
+  const list = document.getElementById('names-list');
+  list.innerHTML = players.map(p => `
+    <div class="name-tag">
+      ${p}
+      <span class="remove" onclick="removeName('${p.replace(/'/g,"\\'")}')">×</span>
+    </div>`).join('');
+
+  const count = document.getElementById('names-count');
+  if (players.length === 0) {
+    count.innerHTML = 'No players added yet';
+  } else {
+    const teams = Math.min(players.length, 48);
+    count.innerHTML = `<span>${players.length}</span> player${players.length !== 1 ? 's' : ''} · Each gets ${Math.ceil(48 / players.length)} team${Math.ceil(48 / players.length) !== 1 ? 's' : ''} (roughly)`;
+  }
+}
+
+// ============================================================
+// PRIZE CALCULATOR
+// ============================================================
+function updatePrize() {
+  const fee = parseInt(document.getElementById('entry-fee').value);
+  const split = document.getElementById('prize-split').value;
+  const n = players.length;
+  const display = document.getElementById('prize-display');
+
+  if (fee === 0 || n === 0) { display.style.display = 'none'; return; }
+  display.style.display = 'flex';
+
+  const pot = fee * n;
+  document.getElementById('pot-total').textContent = `£${pot}`;
+
+  if (split === 'winner') {
+    document.getElementById('pot-1st').textContent = `£${pot}`;
+    document.getElementById('pot-2nd').textContent = '—';
+    document.getElementById('pot-3rd').textContent = '—';
+  } else if (split === 'top2') {
+    document.getElementById('pot-1st').textContent = `£${Math.floor(pot * 0.7)}`;
+    document.getElementById('pot-2nd').textContent = `£${Math.floor(pot * 0.3)}`;
+    document.getElementById('pot-3rd').textContent = '—';
+  } else {
+    document.getElementById('pot-1st').textContent = `£${Math.floor(pot * 0.6)}`;
+    document.getElementById('pot-2nd').textContent = `£${Math.floor(pot * 0.25)}`;
+    document.getElementById('pot-3rd').textContent = `£${Math.floor(pot * 0.15)}`;
+  }
+}
+
+// ============================================================
+// THE DRAW
+// ============================================================
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function doDraw() {
+  if (players.length < 2) {
+    alert('Please add at least 2 players to do the draw!');
+    return;
+  }
+
+  const btn = document.getElementById('draw-btn');
+  btn.classList.add('drumrolling');
+  btn.textContent = '🥁 Drawing...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.classList.remove('drumrolling');
+    performDraw();
+  }, 1200);
+}
+
+function performDraw() {
+  const shuffledTeams = shuffle(TEAMS);
+  const shuffledPlayers = shuffle([...players]);
+  const assignments = [];
+
+  // Assign teams round-robin style
+  shuffledTeams.forEach((team, i) => {
+    const player = shuffledPlayers[i % shuffledPlayers.length];
+    assignments.push({ player, team });
+  });
+
+  // Group by player
+  const byPlayer = {};
+  shuffledPlayers.forEach(p => { byPlayer[p] = []; });
+  assignments.forEach(a => { byPlayer[a.player].push(a.team); });
+
+  renderResults(byPlayer);
+}
+
+function renderResults(byPlayer) {
+  // Hide setup, show results
+  document.getElementById('setup-section').style.display = 'none';
+  document.getElementById('results-section').style.display = 'block';
+
+  // Prize bar
+  const fee = parseInt(document.getElementById('entry-fee').value);
+  const n = players.length;
+  const split = document.getElementById('prize-split').value;
+
+  if (fee > 0 && n > 0) {
+    const pot = fee * n;
+    const pb = document.getElementById('prize-bar');
+    pb.style.display = 'flex';
+    document.getElementById('rb-players').textContent = n;
+    document.getElementById('rb-pot').textContent = `£${pot}`;
+    const win = split === 'winner' ? pot : split === 'top2' ? Math.floor(pot*0.7) : Math.floor(pot*0.6);
+    document.getElementById('rb-1st').textContent = `£${win}`;
+  }
+
+  const subtitle = document.getElementById('results-subtitle');
+  subtitle.textContent = `${players.length} players · ${TEAMS.length} teams · Good luck everyone! ⚽`;
+
+  // Render cards
+  const grid = document.getElementById('results-grid');
+  grid.innerHTML = '';
+
+  Object.entries(byPlayer).forEach(([player, teams], playerIdx) => {
+    teams.forEach((team, teamIdx) => {
+      const card = document.createElement('div');
+      card.className = `draw-card grp-${team.group.toLowerCase()}`;
+      card.style.animationDelay = `${(playerIdx * teams.length + teamIdx) * 60}ms`;
+
+      const shareText = encodeURIComponent(`🏆 World Cup 2026 Sweepstake\n${player} got: ${team.flag} ${team.name} (Group ${team.group})\n\nJoin the sweepstake at theworldcup26.co.uk/sweepstake`);
+
+      card.innerHTML = `
+        <div class="draw-card-header">
+          <div class="draw-card-flag">${team.flag}</div>
+          <div class="draw-card-num">#${playerIdx + 1}</div>
+        </div>
+        <div class="draw-card-body">
+          <div class="draw-card-team">${team.name}</div>
+          <div class="draw-card-group">Group ${team.group} · FIFA World Cup 2026</div>
+        </div>
+        <div class="draw-card-footer">
+          <div class="draw-card-name">👤 ${player}</div>
+          <button class="draw-card-share" onclick="shareCard('${player}', '${team.flag}', '${team.name}', '${team.group}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Share
+          </button>
+        </div>`;
+      grid.appendChild(card);
+    });
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function shareCard(player, flag, team, group) {
+  const text = `🏆 World Cup 2026 Sweepstake\n${player} drew: ${flag} ${team} (Group ${group})\n\nCreate your own sweepstake at theworldcup26.co.uk/sweepstake ⚽`;
+  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+function shareAll() {
+  const cards = document.querySelectorAll('.draw-card');
+  let text = '🏆 World Cup 2026 Sweepstake Results!\n\n';
+  cards.forEach(card => {
+    const name = card.querySelector('.draw-card-name').textContent.replace('👤 ', '');
+    const team = card.querySelector('.draw-card-team').textContent;
+    const flag = card.querySelector('.draw-card-flag').textContent;
+    text += `${flag} ${team} → ${name}\n`;
+  });
+  text += '\nCreate your own at theworldcup26.co.uk/sweepstake ⚽🏆';
+  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+function redraw() {
+  if (confirm('Redo the draw with the same players?')) {
+    const byPlayer = {};
+    players.forEach(p => { byPlayer[p] = []; });
+    const shuffledTeams = shuffle(TEAMS);
+    const shuffledPlayers = shuffle([...players]);
+    shuffledTeams.forEach((team, i) => {
+      byPlayer[shuffledPlayers[i % shuffledPlayers.length]].push(team);
+    });
+    renderResults(byPlayer);
+  }
+}
+
+function resetAll() {
+  document.getElementById('results-section').style.display = 'none';
+  document.getElementById('setup-section').style.display = 'block';
+  document.getElementById('draw-btn').textContent = '🎲 Do The Draw!';
+  document.getElementById('draw-btn').disabled = false;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
