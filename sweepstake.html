@@ -279,16 +279,43 @@ select.input-field {
 
 /* PRINT STYLES */
 @media print {
-  nav, .hero, .setup-container, .results-actions, .prize-bar, .draw-card-share { display: none !important; }
+  nav, .hero, .setup-container, .results-actions, .prize-bar { display: none !important; }
   body { background: white !important; color: black !important; }
-  .results-header h2 { color: #1a1a1a; }
+  #results-section { display: block !important; }
+  .results-header h2 { color: #1a1a1a; font-size: 32px; }
   .results-header p { color: #666; }
-  .draw-card { border: 2px solid #ddd !important; background: white !important; break-inside: avoid; }
+  .results-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+    padding: 20px !important;
+  }
+  .draw-card {
+    border: 2px solid #ddd !important;
+    background: white !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
   .draw-card-team { color: #1a1a1a !important; }
   .draw-card-name { color: #1a1a1a !important; }
   .draw-card-group { color: #666 !important; }
-  #results-section { display: block !important; }
-  .results-grid { grid-template-columns: repeat(3, 1fr); }
+  .draw-card-num { color: #ddd !important; }
+  .draw-card-footer { border-top: 1px solid #eee !important; }
+  .draw-card-share { display: none !important; }
+  .grp-a { border-top: 3px solid #4c90e2 !important; }
+  .grp-b { border-top: 3px solid #34d399 !important; }
+  .grp-c { border-top: 3px solid #a78bfa !important; }
+  .grp-d { border-top: 3px solid #fbbf24 !important; }
+  .grp-e { border-top: 3px solid #fb7239 !important; }
+  .grp-f { border-top: 3px solid #f87171 !important; }
+  .grp-g { border-top: 3px solid #2dd4bf !important; }
+  .grp-h { border-top: 3px solid #c084fc !important; }
+  .grp-i { border-top: 3px solid #f472b6 !important; }
+  .grp-j { border-top: 3px solid #34d399 !important; }
+  .grp-k { border-top: 3px solid #fbbf24 !important; }
+  .grp-l { border-top: 3px solid #60a5fa !important; }
 }
 
 /* ANIMATION */
@@ -364,7 +391,7 @@ select.input-field {
       </div>
       <div>
         <div class="setting-label">Prize Split</div>
-        <select class="input-field" id="prize-split">
+        <select class="input-field" id="prize-split" onchange="updatePrize()">
           <option value="winner">Winner takes all</option>
           <option value="top2">Top 2 (70% / 30%)</option>
           <option value="top3" selected>Top 3 (60% / 25% / 15%)</option>
