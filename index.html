@@ -1293,7 +1293,7 @@ function showFixturesForStage(stage) {
   const byDate = {};
   filtered.forEach(m => {
     const d = new Date(m.utcDate);
-    const key = d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'long'});
+    const key = d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',timeZone:'Europe/London'});
     if (!byDate[key]) byDate[key] = [];
     byDate[key].push(m);
   });
@@ -1314,8 +1314,13 @@ function showFixturesForStage(stage) {
         const s = m.score.fullTime;
         scoreHtml = `<div class="fr-score" style="color:#22c55e;animation:pulse 1.5s infinite">${s.home??0} – ${s.away??0}</div>`;
       } else {
-        const t = new Date(m.utcDate).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-        scoreHtml = `<div class="fr-score tbd">${t}</div>`;
+        const d = new Date(m.utcDate);
+        const bst = d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/London'});
+        const et  = d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true,timeZone:'America/New_York'}).replace(' ','').toLowerCase();
+        scoreHtml = `<div class="fr-score tbd" style="display:flex;flex-direction:column;align-items:center;gap:1px;min-width:80px">
+          <span style="font-size:15px;font-weight:700;color:var(--white)">${bst} <span style="font-size:10px;color:var(--gold);font-family:'Barlow Condensed',sans-serif;letter-spacing:1px">GMT</span></span>
+          <span style="font-size:11px;color:var(--dimmed);font-family:'Barlow Condensed',sans-serif">${et} ET</span>
+        </div>`;
       }
       html += `<div class="fixture-row${isEng?' england':''}${isOpener?' opener':''}">
         <div class="fr-time">${new Date(m.utcDate).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</div>
@@ -1373,12 +1378,136 @@ window.addEventListener('scroll', () => {
   });
 });
 
+// ============================================================
+// STATIC FIXTURE DATA — shows when API is unavailable
+// All times in BST (UK time)
+// ============================================================
+const STATIC_FIXTURES = [
+  // GROUP A
+  {utcDate:'2026-06-11T19:00:00Z',homeTeam:{name:'Mexico'},awayTeam:{name:'South Africa'},group:'GROUP_A',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Estadio Azteca, Mexico City'},
+  {utcDate:'2026-06-12T02:00:00Z',homeTeam:{name:'South Korea'},awayTeam:{name:'Czech Republic'},group:'GROUP_A',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Guadalajara'},
+  {utcDate:'2026-06-18T16:00:00Z',homeTeam:{name:'Czech Republic'},awayTeam:{name:'South Africa'},group:'GROUP_A',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Atlanta'},
+  {utcDate:'2026-06-19T00:00:00Z',homeTeam:{name:'Mexico'},awayTeam:{name:'South Korea'},group:'GROUP_A',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Guadalajara'},
+  {utcDate:'2026-06-24T20:00:00Z',homeTeam:{name:'South Africa'},awayTeam:{name:'South Korea'},group:'GROUP_A',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Atlanta'},
+  {utcDate:'2026-06-24T20:00:00Z',homeTeam:{name:'Mexico'},awayTeam:{name:'Czech Republic'},group:'GROUP_A',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Dallas'},
+  // GROUP B
+  {utcDate:'2026-06-12T22:00:00Z',homeTeam:{name:'Canada'},awayTeam:{name:'Bosnia-Herzegovina'},group:'GROUP_B',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Toronto'},
+  {utcDate:'2026-06-13T01:00:00Z',homeTeam:{name:'Qatar'},awayTeam:{name:'Switzerland'},group:'GROUP_B',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Los Angeles'},
+  {utcDate:'2026-06-19T16:00:00Z',homeTeam:{name:'Bosnia-Herzegovina'},awayTeam:{name:'Qatar'},group:'GROUP_B',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Seattle'},
+  {utcDate:'2026-06-19T22:00:00Z',homeTeam:{name:'Canada'},awayTeam:{name:'Switzerland'},group:'GROUP_B',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Vancouver'},
+  {utcDate:'2026-06-25T01:00:00Z',homeTeam:{name:'Canada'},awayTeam:{name:'Qatar'},group:'GROUP_B',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Toronto'},
+  {utcDate:'2026-06-25T01:00:00Z',homeTeam:{name:'Switzerland'},awayTeam:{name:'Bosnia-Herzegovina'},group:'GROUP_B',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'San Francisco'},
+  // GROUP C
+  {utcDate:'2026-06-12T19:00:00Z',homeTeam:{name:'Brazil'},awayTeam:{name:'Morocco'},group:'GROUP_C',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Houston'},
+  {utcDate:'2026-06-12T22:00:00Z',homeTeam:{name:'Haiti'},awayTeam:{name:'Scotland'},group:'GROUP_C',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Miami'},
+  {utcDate:'2026-06-19T19:00:00Z',homeTeam:{name:'Morocco'},awayTeam:{name:'Haiti'},group:'GROUP_C',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Dallas'},
+  {utcDate:'2026-06-20T01:00:00Z',homeTeam:{name:'Brazil'},awayTeam:{name:'Scotland'},group:'GROUP_C',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'San Francisco'},
+  {utcDate:'2026-06-25T20:00:00Z',homeTeam:{name:'Brazil'},awayTeam:{name:'Haiti'},group:'GROUP_C',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Houston'},
+  {utcDate:'2026-06-25T20:00:00Z',homeTeam:{name:'Scotland'},awayTeam:{name:'Morocco'},group:'GROUP_C',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'New York'},
+  // GROUP D
+  {utcDate:'2026-06-13T19:00:00Z',homeTeam:{name:'USA'},awayTeam:{name:'Paraguay'},group:'GROUP_D',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Los Angeles'},
+  {utcDate:'2026-06-14T01:00:00Z',homeTeam:{name:'Australia'},awayTeam:{name:'Turkey'},group:'GROUP_D',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Kansas City'},
+  {utcDate:'2026-06-20T19:00:00Z',homeTeam:{name:'Paraguay'},awayTeam:{name:'Australia'},group:'GROUP_D',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'New York'},
+  {utcDate:'2026-06-21T01:00:00Z',homeTeam:{name:'USA'},awayTeam:{name:'Turkey'},group:'GROUP_D',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Seattle'},
+  {utcDate:'2026-06-26T01:00:00Z',homeTeam:{name:'USA'},awayTeam:{name:'Australia'},group:'GROUP_D',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Los Angeles'},
+  {utcDate:'2026-06-26T01:00:00Z',homeTeam:{name:'Turkey'},awayTeam:{name:'Paraguay'},group:'GROUP_D',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Dallas'},
+  // GROUP E
+  {utcDate:'2026-06-14T19:00:00Z',homeTeam:{name:'Germany'},awayTeam:{name:'Curaçao'},group:'GROUP_E',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Philadelphia'},
+  {utcDate:'2026-06-15T01:00:00Z',homeTeam:{name:'Ivory Coast'},awayTeam:{name:'Ecuador'},group:'GROUP_E',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Boston'},
+  {utcDate:'2026-06-21T19:00:00Z',homeTeam:{name:'Curaçao'},awayTeam:{name:'Ivory Coast'},group:'GROUP_E',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Miami'},
+  {utcDate:'2026-06-22T01:00:00Z',homeTeam:{name:'Germany'},awayTeam:{name:'Ecuador'},group:'GROUP_E',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'New York'},
+  {utcDate:'2026-06-27T01:00:00Z',homeTeam:{name:'Germany'},awayTeam:{name:'Ivory Coast'},group:'GROUP_E',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Philadelphia'},
+  {utcDate:'2026-06-27T01:00:00Z',homeTeam:{name:'Ecuador'},awayTeam:{name:'Curaçao'},group:'GROUP_E',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Houston'},
+  // GROUP F
+  {utcDate:'2026-06-14T22:00:00Z',homeTeam:{name:'Netherlands'},awayTeam:{name:'Japan'},group:'GROUP_F',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'San Francisco'},
+  {utcDate:'2026-06-15T19:00:00Z',homeTeam:{name:'Sweden'},awayTeam:{name:'Tunisia'},group:'GROUP_F',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Atlanta'},
+  {utcDate:'2026-06-21T22:00:00Z',homeTeam:{name:'Japan'},awayTeam:{name:'Sweden'},group:'GROUP_F',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Los Angeles'},
+  {utcDate:'2026-06-22T19:00:00Z',homeTeam:{name:'Netherlands'},awayTeam:{name:'Tunisia'},group:'GROUP_F',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Dallas'},
+  {utcDate:'2026-06-27T20:00:00Z',homeTeam:{name:'Netherlands'},awayTeam:{name:'Sweden'},group:'GROUP_F',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Seattle'},
+  {utcDate:'2026-06-27T20:00:00Z',homeTeam:{name:'Tunisia'},awayTeam:{name:'Japan'},group:'GROUP_F',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Boston'},
+  // GROUP G
+  {utcDate:'2026-06-15T22:00:00Z',homeTeam:{name:'Belgium'},awayTeam:{name:'Egypt'},group:'GROUP_G',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Miami'},
+  {utcDate:'2026-06-16T01:00:00Z',homeTeam:{name:'Iran'},awayTeam:{name:'New Zealand'},group:'GROUP_G',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Toronto'},
+  {utcDate:'2026-06-22T22:00:00Z',homeTeam:{name:'Egypt'},awayTeam:{name:'Iran'},group:'GROUP_G',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Houston'},
+  {utcDate:'2026-06-23T01:00:00Z',homeTeam:{name:'Belgium'},awayTeam:{name:'New Zealand'},group:'GROUP_G',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Kansas City'},
+  {utcDate:'2026-06-28T20:00:00Z',homeTeam:{name:'Belgium'},awayTeam:{name:'Iran'},group:'GROUP_G',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'New York'},
+  {utcDate:'2026-06-28T20:00:00Z',homeTeam:{name:'New Zealand'},awayTeam:{name:'Egypt'},group:'GROUP_G',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Vancouver'},
+  // GROUP H
+  {utcDate:'2026-06-16T19:00:00Z',homeTeam:{name:'Spain'},awayTeam:{name:'Cape Verde'},group:'GROUP_H',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Los Angeles'},
+  {utcDate:'2026-06-16T22:00:00Z',homeTeam:{name:'Saudi Arabia'},awayTeam:{name:'Uruguay'},group:'GROUP_H',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'New York'},
+  {utcDate:'2026-06-23T19:00:00Z',homeTeam:{name:'Cape Verde'},awayTeam:{name:'Saudi Arabia'},group:'GROUP_H',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Dallas'},
+  {utcDate:'2026-06-23T22:00:00Z',homeTeam:{name:'Spain'},awayTeam:{name:'Uruguay'},group:'GROUP_H',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Kansas City'},
+  {utcDate:'2026-06-28T01:00:00Z',homeTeam:{name:'Spain'},awayTeam:{name:'Saudi Arabia'},group:'GROUP_H',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Seattle'},
+  {utcDate:'2026-06-28T01:00:00Z',homeTeam:{name:'Uruguay'},awayTeam:{name:'Cape Verde'},group:'GROUP_H',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Miami'},
+  // GROUP I
+  {utcDate:'2026-06-17T19:00:00Z',homeTeam:{name:'France'},awayTeam:{name:'Senegal'},group:'GROUP_I',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Atlanta'},
+  {utcDate:'2026-06-17T22:00:00Z',homeTeam:{name:'Iraq'},awayTeam:{name:'Norway'},group:'GROUP_I',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Boston'},
+  {utcDate:'2026-06-24T19:00:00Z',homeTeam:{name:'Senegal'},awayTeam:{name:'Iraq'},group:'GROUP_I',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Houston'},
+  {utcDate:'2026-06-24T22:00:00Z',homeTeam:{name:'France'},awayTeam:{name:'Norway'},group:'GROUP_I',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'San Francisco'},
+  {utcDate:'2026-06-29T20:00:00Z',homeTeam:{name:'France'},awayTeam:{name:'Iraq'},group:'GROUP_I',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'New York'},
+  {utcDate:'2026-06-29T20:00:00Z',homeTeam:{name:'Norway'},awayTeam:{name:'Senegal'},group:'GROUP_I',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Philadelphia'},
+  // GROUP J
+  {utcDate:'2026-06-17T01:00:00Z',homeTeam:{name:'Argentina'},awayTeam:{name:'Algeria'},group:'GROUP_J',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Dallas'},
+  {utcDate:'2026-06-18T01:00:00Z',homeTeam:{name:'Austria'},awayTeam:{name:'Jordan'},group:'GROUP_J',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Boston'},
+  {utcDate:'2026-06-24T01:00:00Z',homeTeam:{name:'Algeria'},awayTeam:{name:'Austria'},group:'GROUP_J',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Miami'},
+  {utcDate:'2026-06-25T19:00:00Z',homeTeam:{name:'Argentina'},awayTeam:{name:'Jordan'},group:'GROUP_J',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Los Angeles'},
+  {utcDate:'2026-06-29T01:00:00Z',homeTeam:{name:'Argentina'},awayTeam:{name:'Austria'},group:'GROUP_J',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'New York'},
+  {utcDate:'2026-06-29T01:00:00Z',homeTeam:{name:'Jordan'},awayTeam:{name:'Algeria'},group:'GROUP_J',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Seattle'},
+  // GROUP K
+  {utcDate:'2026-06-18T19:00:00Z',homeTeam:{name:'Portugal'},awayTeam:{name:'DR Congo'},group:'GROUP_K',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'New York'},
+  {utcDate:'2026-06-18T22:00:00Z',homeTeam:{name:'Uzbekistan'},awayTeam:{name:'Colombia'},group:'GROUP_K',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Philadelphia'},
+  {utcDate:'2026-06-25T16:00:00Z',homeTeam:{name:'DR Congo'},awayTeam:{name:'Uzbekistan'},group:'GROUP_K',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Vancouver'},
+  {utcDate:'2026-06-26T19:00:00Z',homeTeam:{name:'Portugal'},awayTeam:{name:'Colombia'},group:'GROUP_K',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Boston'},
+  {utcDate:'2026-06-30T20:00:00Z',homeTeam:{name:'Portugal'},awayTeam:{name:'Uzbekistan'},group:'GROUP_K',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Miami'},
+  {utcDate:'2026-06-30T20:00:00Z',homeTeam:{name:'Colombia'},awayTeam:{name:'DR Congo'},group:'GROUP_K',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Kansas City'},
+  // GROUP L (ENGLAND)
+  {utcDate:'2026-06-19T01:00:00Z',homeTeam:{name:'England'},awayTeam:{name:'Croatia'},group:'GROUP_L',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'San Francisco'},
+  {utcDate:'2026-06-19T19:00:00Z',homeTeam:{name:'Ghana'},awayTeam:{name:'Panama'},group:'GROUP_L',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Philadelphia'},
+  {utcDate:'2026-06-25T22:00:00Z',homeTeam:{name:'Croatia'},awayTeam:{name:'Ghana'},group:'GROUP_L',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Toronto'},
+  {utcDate:'2026-06-26T22:00:00Z',homeTeam:{name:'England'},awayTeam:{name:'Panama'},group:'GROUP_L',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Houston'},
+  {utcDate:'2026-07-01T01:00:00Z',homeTeam:{name:'England'},awayTeam:{name:'Ghana'},group:'GROUP_L',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'New York'},
+  {utcDate:'2026-07-01T01:00:00Z',homeTeam:{name:'Panama'},awayTeam:{name:'Croatia'},group:'GROUP_L',stage:'GROUP_STAGE',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Los Angeles'},
+  // ROUND OF 32
+  {utcDate:'2026-07-02T20:00:00Z',homeTeam:{name:'1st Group A'},awayTeam:{name:'Best 3rd'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-03T00:00:00Z',homeTeam:{name:'1st Group B'},awayTeam:{name:'Best 3rd'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-03T20:00:00Z',homeTeam:{name:'1st Group C'},awayTeam:{name:'Best 3rd'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-04T00:00:00Z',homeTeam:{name:'1st Group D'},awayTeam:{name:'2nd Group A'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-04T20:00:00Z',homeTeam:{name:'1st Group E'},awayTeam:{name:'2nd Group B'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-05T00:00:00Z',homeTeam:{name:'1st Group F'},awayTeam:{name:'2nd Group C'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-05T20:00:00Z',homeTeam:{name:'1st Group G'},awayTeam:{name:'2nd Group D'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-06T00:00:00Z',homeTeam:{name:'1st Group H'},awayTeam:{name:'2nd Group E'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-06T20:00:00Z',homeTeam:{name:'1st Group I'},awayTeam:{name:'2nd Group F'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-07T00:00:00Z',homeTeam:{name:'1st Group J'},awayTeam:{name:'2nd Group G'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-07T20:00:00Z',homeTeam:{name:'1st Group K'},awayTeam:{name:'2nd Group H'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-08T00:00:00Z',homeTeam:{name:'1st Group L'},awayTeam:{name:'2nd Group I'},group:'R32',stage:'LAST_32',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  // ROUND OF 16
+  {utcDate:'2026-07-10T20:00:00Z',homeTeam:{name:'R32 Winner 1'},awayTeam:{name:'R32 Winner 2'},group:'R16',stage:'LAST_16',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-11T00:00:00Z',homeTeam:{name:'R32 Winner 3'},awayTeam:{name:'R32 Winner 4'},group:'R16',stage:'LAST_16',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-11T20:00:00Z',homeTeam:{name:'R32 Winner 5'},awayTeam:{name:'R32 Winner 6'},group:'R16',stage:'LAST_16',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-12T00:00:00Z',homeTeam:{name:'R32 Winner 7'},awayTeam:{name:'R32 Winner 8'},group:'R16',stage:'LAST_16',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-12T20:00:00Z',homeTeam:{name:'R32 Winner 9'},awayTeam:{name:'R32 Winner 10'},group:'R16',stage:'LAST_16',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-13T00:00:00Z',homeTeam:{name:'R32 Winner 11'},awayTeam:{name:'R32 Winner 12'},group:'R16',stage:'LAST_16',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-13T20:00:00Z',homeTeam:{name:'R32 Winner 13'},awayTeam:{name:'R32 Winner 14'},group:'R16',stage:'LAST_16',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-14T00:00:00Z',homeTeam:{name:'R32 Winner 15'},awayTeam:{name:'R32 Winner 16'},group:'R16',stage:'LAST_16',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  // QUARTER FINALS
+  {utcDate:'2026-07-16T20:00:00Z',homeTeam:{name:'QF 1'},awayTeam:{name:'QF 2'},group:'QF',stage:'QUARTER_FINALS',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-17T00:00:00Z',homeTeam:{name:'QF 3'},awayTeam:{name:'QF 4'},group:'QF',stage:'QUARTER_FINALS',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-17T20:00:00Z',homeTeam:{name:'QF 5'},awayTeam:{name:'QF 6'},group:'QF',stage:'QUARTER_FINALS',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  {utcDate:'2026-07-18T00:00:00Z',homeTeam:{name:'QF 7'},awayTeam:{name:'QF 8'},group:'QF',stage:'QUARTER_FINALS',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'TBC'},
+  // SEMI FINALS
+  {utcDate:'2026-07-20T20:00:00Z',homeTeam:{name:'SF 1'},awayTeam:{name:'SF 2'},group:'SF',stage:'SEMI_FINALS',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Atlanta'},
+  {utcDate:'2026-07-21T20:00:00Z',homeTeam:{name:'SF 3'},awayTeam:{name:'SF 4'},group:'SF',stage:'SEMI_FINALS',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'Dallas'},
+  // FINAL
+  {utcDate:'2026-07-26T19:00:00Z',homeTeam:{name:'finalist 1'},awayTeam:{name:'finalist 2'},group:'FINAL',stage:'FINAL',status:'TIMED',score:{fullTime:{home:null,away:null}},venue:'MetLife Stadium, New York/New Jersey'},
+];
+
 async function fetchAll() {
   try {
     const mRes = await fetch(`${BASE_URL}/competitions/${WC_ID}/matches`,{headers:{'X-Auth-Token':API_KEY}});
     if (!mRes.ok) throw new Error(`API ${mRes.status}`);
     const mData = await mRes.json();
     const matches = mData.matches || [];
+    if (!matches.length) throw new Error('No matches returned');
     renderFixtures(matches);
     renderLiveBanner(matches);
     const hasLive = matches.some(m => m.status==='IN_PLAY'||m.status==='PAUSED');
@@ -1393,11 +1522,12 @@ async function fetchAll() {
     } catch { renderGroups(null); }
     document.getElementById('last-updated').textContent = 'Last updated: '+new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
   } catch(err) {
-    console.error('API error:',err);
+    console.error('API unavailable, using static fixtures:',err);
     renderGroups(null);
-    document.getElementById('fixtures-container').innerHTML = `<div class="loading-state"><div style="font-size:28px;margin-bottom:10px">⚠️</div>Could not load live data. Showing static information.<br><small style="color:var(--dimmed);margin-top:6px;display:block">${err.message} — The tournament may not have started yet, or the API rate limit was hit. Retrying in 3 minutes.</small></div>`;
+    renderFixtures(STATIC_FIXTURES);
     const dot = document.getElementById('live-dot'); const lbl = document.getElementById('live-label');
-    dot.style.background='#f97316'; lbl.style.color='#f97316'; lbl.textContent='OFFLINE';
+    dot.style.background='#4c90e2'; lbl.style.color='#7bbfff'; lbl.textContent='FIXTURES';
+    document.getElementById('last-updated').textContent = 'Showing confirmed fixture schedule · Live scores from 11 June';
   }
 }
 
