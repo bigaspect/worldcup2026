@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://theworldcup26.com/sitemap.xml
