@@ -214,7 +214,6 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:28px 2
       <div class="divider"></div>
     </div>
     <div class="widget-wrap">
-      <!-- REPLACE YOUR_API_KEY_HERE with your key from dashboard.api-football.com/profile -->
       <api-sports-widget
         data-type="config"
         data-key="9f92bdf8ed87670b14f2dcc78df8d8c2"
@@ -222,16 +221,20 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:28px 2
         data-lang="en"
         data-theme="dark"
         data-show-logos="true"
+        data-show-errors="true"
         data-refresh="60"
         data-league="1"
         data-season="2026"
-        data-tab="results"
         data-target-game="#game-detail"
       ></api-sports-widget>
       <api-sports-widget
         data-type="league"
         data-league="1"
         data-season="2026"
+        data-tab="results"
+        data-standings="true"
+        data-refresh="60"
+        data-target-game="#game-detail"
       ></api-sports-widget>
       <div id="game-detail" style="margin-top:8px"></div>
     </div>
