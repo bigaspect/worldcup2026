@@ -28,7 +28,6 @@
 html{scroll-behavior:smooth}
 body{background:var(--navy);color:var(--white);font-family:'Barlow',sans-serif;line-height:1.5;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,13,31,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,162,39,0.2);padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between}
 .nav-brand{font-family:'Bebas Neue',cursive;font-size:22px;letter-spacing:2px;color:var(--white)}
 .nav-brand span{color:var(--gold)}
@@ -40,7 +39,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,13,31,0.92
 .live-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
 .live-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;color:#22c55e}
-
 #hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,162,39,0.12) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(76,144,226,0.1) 0%,transparent 50%),var(--navy)}
 #hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(255,255,255,0.02) 79px,rgba(255,255,255,0.02) 80px),repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,0.02) 79px,rgba(255,255,255,0.02) 80px);pointer-events:none}
 .hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
@@ -60,14 +58,12 @@ h1.hero-title .year{display:block;color:var(--gold);font-size:clamp(80px,16vw,16
 .hero-cta-sweep:hover{background:rgba(201,162,39,0.1);border-color:var(--gold);transform:translateY(-1px)}
 .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--dimmed);font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;animation:bounce 2.5s infinite}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-
 section{padding:72px 0 48px}
 .container{max-width:1100px;margin:0 auto;padding:0 24px}
 .section-title{text-align:center;margin-bottom:40px}
 .section-title h2{font-family:'Bebas Neue',cursive;font-size:48px;letter-spacing:3px}
 .section-title .subtitle{font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .divider{width:60px;height:3px;background:var(--gold);margin:12px auto 0;border-radius:2px}
-
 #timeline{background:var(--navy2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0}
 .timeline-inner{display:flex;overflow-x:auto;scrollbar-width:none}
 .timeline-inner::-webkit-scrollbar{display:none}
@@ -81,7 +77,6 @@ section{padding:72px 0 48px}
 .tl-phase.qf{border-top:3px solid #fbbf24}.tl-phase.qf .ph-name{color:#fcd34d}
 .tl-phase.sf{border-top:3px solid #fb7239}.tl-phase.sf .ph-name{color:#fdba74}
 .tl-phase.fin{border-top:3px solid var(--gold)}.tl-phase.fin .ph-name{color:var(--gold-light)}
-
 #groups{background:var(--navy)}
 .groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
 .group-card{background:var(--navy2);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:transform 0.15s,border-color 0.15s}
@@ -106,10 +101,8 @@ section{padding:72px 0 48px}
 .gc-j .gc-header{background:rgba(16,185,129,0.18);color:#6ee7b7}
 .gc-k .gc-header{background:rgba(245,158,11,0.18);color:#fcd34d}
 .gc-l .gc-header{background:rgba(59,130,246,0.22);color:#93c5fd}
-
 #fixtures{background:var(--navy2)}
 .widget-wrap{background:var(--navy3);border-radius:12px;overflow:hidden;border:1px solid var(--border);min-height:400px}
-
 #bracket{background:var(--navy)}
 .bracket-intro{text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--muted);margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto}
 .bracket-stages{display:grid;grid-template-columns:2fr 1.5fr 1.2fr 1.2fr 1fr;gap:12px;align-items:start;overflow-x:auto}
@@ -126,12 +119,10 @@ section{padding:72px 0 48px}
 .bm-venue{font-size:9px;color:var(--dimmed);font-family:'Barlow',sans-serif;margin-top:4px}
 .bm.final-card{border-color:rgba(201,162,39,0.45);background:rgba(201,162,39,0.08);padding:14px 12px}
 .final-headline{font-family:'Bebas Neue',cursive;font-size:20px;letter-spacing:2px;color:var(--gold);text-align:center;margin-bottom:8px}
-
 footer{background:var(--navy2);border-top:1px solid var(--border);padding:28px 24px;text-align:center}
 .footer-brand{font-family:'Bebas Neue',cursive;font-size:28px;letter-spacing:3px;margin-bottom:8px}
 .footer-brand span{color:var(--gold)}
 .footer-meta{font-size:12px;color:var(--dimmed);font-family:'Barlow',sans-serif;max-width:500px;margin:0 auto;line-height:1.6}
-
 @media(max-width:768px){.nav-links{display:none}.bracket-stages{grid-template-columns:repeat(5,minmax(140px,1fr))}.groups-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.groups-grid{grid-template-columns:1fr}h1.hero-title{font-size:64px}h1.hero-title .year{font-size:72px}}
 </style>
@@ -214,6 +205,8 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:28px 2
       <div class="divider"></div>
     </div>
     <div class="widget-wrap">
+
+      <!-- Config widget: API key + global settings -->
       <api-sports-widget
         data-type="config"
         data-key="9f92bdf8ed87670b14f2dcc78df8d8c2"
@@ -223,20 +216,22 @@ footer{background:var(--navy2);border-top:1px solid var(--border);padding:28px 2
         data-show-logos="true"
         data-show-errors="true"
         data-refresh="60"
-        data-league="1"
-        data-season="2026"
         data-target-game="#game-detail"
       ></api-sports-widget>
+
+      <!-- Games widget: shows all WC matches with All/Live/Finished/Upcoming tabs -->
       <api-sports-widget
-        data-type="league"
+        data-type="games"
         data-league="1"
-        data-season="2026"
-        data-tab="results"
-        data-standings="true"
+        data-tab="finished"
+        data-show-toolbar="true"
         data-refresh="60"
         data-target-game="#game-detail"
       ></api-sports-widget>
+
+      <!-- Match detail loads here when a game is clicked -->
       <div id="game-detail" style="margin-top:8px"></div>
+
     </div>
   </div>
 </section>
